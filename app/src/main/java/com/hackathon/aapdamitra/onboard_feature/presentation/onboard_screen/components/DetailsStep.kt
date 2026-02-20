@@ -125,6 +125,7 @@ fun DetailsStep(
             text = {
                 LazyColumn {
                     items(seletedModalData.options){option ->
+                        val isSelected = option == seletedModalData.selectedOption
                         Surface(
                             onClick = {
                                 onOptionSeleted(option)

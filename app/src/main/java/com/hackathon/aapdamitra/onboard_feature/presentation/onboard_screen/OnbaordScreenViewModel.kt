@@ -116,23 +116,24 @@ class OnbaordScreenViewModel @Inject constructor(
         _uiState.update { it.copy(selectedModal = null) }
     }
     fun onSelectedOption(option : String){
-        //update Seleted ModalData
-        _uiState.update { it.copy(selectedModal = it.selectedModal!!.copy(selectedOption = option)) }
 
-        //update Modal Data of choosed feild
         when(uiState.value.selectedModal){
             uiState.value.userDetails.state -> {
                 _uiState.update { it.copy(userDetails = it.userDetails.copy(state = it.userDetails.state.copy(selectedOption = option))) }
             }
 
             uiState.value.userDetails.birthYear -> {
-                _uiState.update { it.copy(userDetails = it.userDetails.copy(state = it.userDetails.birthYear.copy(selectedOption = option))) }
+                _uiState.update { it.copy(userDetails = it.userDetails.copy(birthYear = it.userDetails.birthYear.copy(selectedOption = option))) }
             }
 
             uiState.value.userDetails.gender -> {
-                _uiState.update { it.copy(userDetails = it.userDetails.copy(state = it.userDetails.gender.copy(selectedOption = option))) }
+                _uiState.update { it.copy(userDetails = it.userDetails.copy(gender = it.userDetails.gender.copy(selectedOption = option))) }
             }
         }
+
+
+
+        _uiState.update { it.copy(selectedModal = null) }
     }
 
 
