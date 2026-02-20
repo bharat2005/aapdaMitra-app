@@ -69,7 +69,12 @@ fun OnboardScreen(
                     }
                     OnboardSteps.DETAILS -> {
                         DetailsStep(
-                            onNext = {viewModel.onNextStep(OnboardSteps.MODES)}
+                            onNext = {viewModel.onNextStep(OnboardSteps.MODES)},
+                            userDetails = uiState.userDetails,
+                            onModalSelected = { modalData ->
+                                viewModel.onModalSelected(modalData)
+                            },
+                            seletedModalData = uiState.selectedModal
                         )
                     }
                     OnboardSteps.MODES -> {
