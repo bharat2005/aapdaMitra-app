@@ -27,7 +27,9 @@ fun DetailsStep(
     onNext : () -> Unit,
     userDetails: UserDetails,
     onModalSelected : (ModalData) -> Unit,
-    seletedModalData : ModalData?
+    seletedModalData : ModalData?,
+    onModalClose : () -> Unit,
+    onOptionSeleted : (String) -> Unit
 ) {
 
     Column(
@@ -38,7 +40,8 @@ fun DetailsStep(
         //States
         Column(
             modifier = Modifier.fillMaxWidth()
-        ) {
+        )
+        {
             Text("States")
             Surface(
                 onClick = {
@@ -60,6 +63,58 @@ fun DetailsStep(
         }
 
 
+        //Year of Birth
+        Column(
+            modifier = Modifier.fillMaxWidth()
+        )
+        {
+            Text("Year of Birth")
+            Surface(
+                onClick = {
+                    onModalSelected(userDetails.birthYear)
+                }
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                )
+                {
+                    Text(userDetails.birthYear.selectedOption ?: "")
+                }
+
+            }
+        }
+
+
+        //Gender
+        Column(
+            modifier = Modifier.fillMaxWidth()
+        )
+        {
+            Text("Gender")
+            Surface(
+                onClick = {
+                    onModalSelected(userDetails.gender)
+                }
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                )
+                {
+                    Text(userDetails.gender.selectedOption ?: "")
+                }
+            }
+        }
+
+
+
 
     }
 
@@ -71,14 +126,22 @@ fun DetailsStep(
                 LazyColumn {
                     items(seletedModalData.options){option ->
                         Surface(
-                            onClick = {}
+                            onClick = {
+                                onOptionSeleted(option)
+                            }
                         ){
-                            Text(option)
+                            Box(modifier = Modifier.fillMaxWidth().height(40.dp), contentAlignment = Alignment.Center) {
+                                Text(option)
+                            }
                         }
                     }
                 }
             },
-            confirmButton = {}
+            confirmButton = {
+                Button(onClick = onModalClose) {
+                    Text("Cancel")
+                }
+            }
         )
     }
 

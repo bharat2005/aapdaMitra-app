@@ -74,7 +74,9 @@ fun OnboardScreen(
                             onModalSelected = { modalData ->
                                 viewModel.onModalSelected(modalData)
                             },
-                            seletedModalData = uiState.selectedModal
+                            seletedModalData = uiState.selectedModal,
+                            onModalClose = viewModel::onModalDismiss,
+                            onOptionSeleted = viewModel::onSelectedOption
                         )
                     }
                     OnboardSteps.MODES -> {
